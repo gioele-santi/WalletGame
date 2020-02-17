@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Game/Game.gd" type="Script" id=1]
+[ext_resource path="res://Money/Money.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GUI/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sounds/impactMining_000.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/impactMining_003.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/impactMining_004.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/sounds/impactMining_002.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/impactMining_001.ogg" type="AudioStream" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 370, 100 )
+
+[node name="Game" type="Node"]
+script = ExtResource( 1 )
+Money = ExtResource( 2 )
+
+[node name="Wallet" type="Area2D" parent="."]
+position = Vector2( 520, 223 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Wallet"]
+color = Color( 0.294118, 0.952941, 0.054902, 1 )
+polygon = PoolVector2Array( -370, -100, -370, 100, 370, 100, 370, -100 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wallet"]
+shape = SubResource( 1 )
+
+[node name="Money" type="Node" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AcceptDialog" type="AcceptDialog" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -104.5
+margin_top = -46.0
+margin_right = 104.5
+margin_bottom = 46.0
+window_title = "Hai vinto!"
+dialog_text = "Complimenti! 
+Hai completato questo livello.
+Torna alla schermata iniziale."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Ding1" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 4 )
+
+[node name="Ding2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 8 )
+
+[node name="Ding3" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 7 )
+
+[node name="Ding4" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 5 )
+
+[node name="Ding5" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 6 )
+[connection signal="area_entered" from="Wallet" to="." method="_on_Wallet_area_entered"]
+[connection signal="area_exited" from="Wallet" to="." method="_on_Wallet_area_exited"]
+[connection signal="confirmed" from="CanvasLayer/AcceptDialog" to="." method="_on_AcceptDialog_confirmed"]
