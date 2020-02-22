@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/fonts/Kenney Future Narrow.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://GUI/CoinSelector.tscn" type="PackedScene" id=2]
@@ -11,6 +11,10 @@ size = 32
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -29,13 +33,13 @@ __meta__ = {
 }
 
 [node name="TitleContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_right = 1024.0
+margin_right = 1032.0
 margin_bottom = 126.0
 custom_constants/margin_top = 90
 
 [node name="Title" type="Label" parent="VBoxContainer/TitleContainer"]
 margin_top = 90.0
-margin_right = 1024.0
+margin_right = 1032.0
 margin_bottom = 126.0
 custom_fonts/font = SubResource( 1 )
 text = "Gioco delle monete"
@@ -44,8 +48,8 @@ valign = 1
 
 [node name="ObjectiveContainer" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 140.0
-margin_right = 1024.0
-margin_bottom = 224.0
+margin_right = 1032.0
+margin_bottom = 236.0
 custom_constants/margin_right = 350
 custom_constants/margin_top = 30
 custom_constants/margin_left = 370
@@ -54,41 +58,45 @@ custom_constants/margin_bottom = 30
 [node name="ObjectiveControl" type="HBoxContainer" parent="VBoxContainer/ObjectiveContainer"]
 margin_left = 370.0
 margin_top = 30.0
-margin_right = 674.0
-margin_bottom = 54.0
+margin_right = 682.0
+margin_bottom = 66.0
 custom_constants/separation = 12
 
 [node name="Label" type="Label" parent="VBoxContainer/ObjectiveContainer/ObjectiveControl"]
-margin_top = 3.0
+margin_top = 9.0
 margin_right = 153.0
-margin_bottom = 21.0
+margin_bottom = 27.0
 custom_fonts/font = SubResource( 2 )
 text = "Indica una cifra: "
 
 [node name="ObjectiveInput" type="LineEdit" parent="VBoxContainer/ObjectiveContainer/ObjectiveControl"]
 margin_left = 165.0
-margin_right = 223.0
-margin_bottom = 24.0
-text = "0.00"
+margin_right = 247.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 4 )
 align = 1
+max_length = 6
+expand_to_text_length = true
+placeholder_text = "0.00"
+caret_blink = true
 
 [node name="Label2" type="Label" parent="VBoxContainer/ObjectiveContainer/ObjectiveControl"]
-margin_left = 235.0
-margin_top = 3.0
-margin_right = 283.0
-margin_bottom = 21.0
+margin_left = 259.0
+margin_top = 9.0
+margin_right = 307.0
+margin_bottom = 27.0
 custom_fonts/font = SubResource( 2 )
 text = " Euro"
 
 [node name="MoneyContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 238.0
-margin_right = 1024.0
-margin_bottom = 490.0
+margin_top = 250.0
+margin_right = 1032.0
+margin_bottom = 502.0
 custom_constants/margin_left = 180
 
 [node name="MoneyControls" type="HBoxContainer" parent="VBoxContainer/MoneyContainer"]
 margin_left = 180.0
-margin_right = 1024.0
+margin_right = 1032.0
 margin_bottom = 252.0
 
 [node name="Left" type="VBoxContainer" parent="VBoxContainer/MoneyContainer/MoneyControls"]
@@ -172,9 +180,9 @@ margin_bottom = 252.0
 type = 7
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 504.0
-margin_right = 1024.0
-margin_bottom = 573.0
+margin_top = 516.0
+margin_right = 1032.0
+margin_bottom = 585.0
 custom_constants/margin_right = 400
 custom_constants/margin_top = 20
 custom_constants/margin_left = 400
@@ -182,7 +190,7 @@ custom_constants/margin_left = 400
 [node name="PlayButton" type="Button" parent="VBoxContainer/MarginContainer"]
 margin_left = 400.0
 margin_top = 20.0
-margin_right = 624.0
+margin_right = 632.0
 margin_bottom = 69.0
 custom_fonts/font = SubResource( 3 )
 text = "Gioca"
