@@ -15,17 +15,32 @@ var front_textures = {
 	'eur_2': "res://assets/sprites/front/eur_2.png"
 }
 
+var back_textures = {
+	'cent_1': "res://assets/sprites/back/cent_1.png",
+	'cent_2': "res://assets/sprites/back/cent_2.png",
+	'cent_5': "res://assets/sprites/back/cent_5.png",
+	'cent_10': "res://assets/sprites/back/cent_10.png",
+	'cent_20': "res://assets/sprites/back/cent_20.png",
+	'cent_50': "res://assets/sprites/back/cent_50.png",
+	'eur_1': "res://assets/sprites/back/eur_1.png",
+	'eur_2': "res://assets/sprites/back/eur_2.png"
+}
+
 var type setget set_type
 
 var money_value: float
 
 func _ready():
+	$Front.visible = true
+	$Back.visible = false
 	pass # Replace with function body.
 
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			emit_signal("clicked", self)
+		elif event.button_index == BUTTON_RIGHT and event.pressed:
+			flip()
 
 func _process(delta: float) -> void:
 	if held:
@@ -39,6 +54,11 @@ func pickup() -> void:
 func drop() -> void:
 	if held:
 		held = false
+
+func flip() -> void:
+	$Front.visible = not $Front.visible
+	$Back.visible = not $Back.visible
+	#add Tween animation and sound
 
 func set_type(value) -> void:
 	type = value
@@ -71,4 +91,5 @@ func set_type(value) -> void:
 			money_value = 2.0
 	
 	$Front.texture = load(front_textures[texture_name])
+	$Back.texture = load(back_textures[texture_name])
 	pass
