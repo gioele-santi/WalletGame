@@ -12,7 +12,9 @@ func _on_PlayButton_pressed() -> void:
 	$VBoxContainer/MarginContainer/ButtonAudio.play()
 	print("Play Button pressed!")
 	# check value was typed
-	var objective: = float(objective_input.text)
+	var objective_string = objective_input.text.replace(",", ".") #support italian style
+	
+	var objective: = float(objective_string)
 	
 	if objective == 0:
 		return #show alert
