@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Money/Money.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/front/cent_50.png" type="Texture" id=2]
+[ext_resource path="res://assets/sounds/coin-pick-3.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/sounds/coin-put-1.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/coin-put-2.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/coin-pick-2.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/sounds/coin-pick-1.ogg" type="AudioStream" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 44.7508
@@ -20,3 +25,22 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="PickSounds" type="Node" parent="."]
+
+[node name="1" type="AudioStreamPlayer2D" parent="PickSounds"]
+stream = ExtResource( 7 )
+
+[node name="2" type="AudioStreamPlayer2D" parent="PickSounds"]
+stream = ExtResource( 6 )
+
+[node name="3" type="AudioStreamPlayer2D" parent="PickSounds"]
+stream = ExtResource( 3 )
+
+[node name="DropSounds" type="Node" parent="."]
+
+[node name="1" type="AudioStreamPlayer2D" parent="DropSounds"]
+stream = ExtResource( 4 )
+
+[node name="2" type="AudioStreamPlayer2D" parent="DropSounds"]
+stream = ExtResource( 5 )

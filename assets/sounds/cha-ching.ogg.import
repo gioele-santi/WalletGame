@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cha-ching.ogg-fb36fd9a9af96eea745bb2e58e178114.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/cha-ching.ogg"
+dest_files=[ "res://.import/cha-ching.ogg-fb36fd9a9af96eea745bb2e58e178114.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -8,12 +8,14 @@ onready var hud = $HUD
 
 var wallet_content: = 0.0
 var held_object: Money
+var is_active := true # used to enable-disable game (eg when winning)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	yield(self,"ready")
 	level_setup(Global.objective, Global.coins)
 	$CanvasLayer/AcceptDialog.visible = false
+	is_active = true
 	held_object = null
 	pass # Replace with function body.
 
@@ -32,7 +34,7 @@ func level_setup(_objective: float, coins: Array):
 		$Money.add_child(coin)
 
 func _on_pickable_clicked(object) -> void:
-	if ! held_object:
+	if ! held_object and is_active:
 		held_object = object
 		object.pickup()
 
@@ -53,6 +55,9 @@ func _on_Wallet_area_exited(area):
 		check_game()
 
 func level_win() -> void:
+	#wait 1-2 seconds (?) - sound makes it evident
+	is_active = false #disable picking
+	$WinSound.play()
 	$CanvasLayer/AcceptDialog.visible = true
 
 func check_game() -> void:
@@ -66,13 +71,14 @@ func check_game() -> void:
 	if wallet == obj: #wallet_content == objective:
 		level_win()
 	elif wallet_content > objective:
-		print("Play error sound")
-	else:
-		randomize()
-		var sound_idx = randi() % 5 
-		var player: AudioStreamPlayer = $Sounds.get_child(sound_idx)
-		player.play()
+		error_sound()
+	#drop sound is inside coin itself
 
+func error_sound():
+	randomize()
+	var sound_idx = randi() % 5 
+	var player: AudioStreamPlayer = $Sounds.get_child(sound_idx)
+	player.play()
 
 func _on_AcceptDialog_confirmed() -> void:
 	get_tree().change_scene("res://GUI/StartScreen.tscn")

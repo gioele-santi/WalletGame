@@ -50,14 +50,17 @@ func pickup() -> void:
 	if held:
 		return
 	held = true
+	pick_sound()
 
 func drop() -> void:
 	if held:
 		held = false
+		drop_sound()
 
 func flip() -> void:
 	$Front.visible = not $Front.visible
 	$Back.visible = not $Back.visible
+	drop_sound()
 	#add Tween animation and sound
 
 func set_type(value) -> void:
@@ -93,3 +96,15 @@ func set_type(value) -> void:
 	$Front.texture = load(front_textures[texture_name])
 	$Back.texture = load(back_textures[texture_name])
 	pass
+
+func pick_sound():
+	randomize()
+	var sound_idx = randi() % 3 
+	var player: AudioStreamPlayer2D = $PickSounds.get_child(sound_idx)
+	player.play()
+
+func drop_sound():
+	randomize()
+	var sound_idx = randi() % 2 
+	var player: AudioStreamPlayer2D = $DropSounds.get_child(sound_idx)
+	player.play()
