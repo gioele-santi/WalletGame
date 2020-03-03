@@ -9,7 +9,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func update_objective(value: float) -> void:
-	objective_lbl.text = str(value) + " €"
+	objective_lbl.text = str(value).replace(".", ",") + " €"
 
 func update_score(value: float) -> void:
-	score_lbl.text = str(value) + " €"
+	score_lbl.text = str(value).replace(".", ",") + " €"

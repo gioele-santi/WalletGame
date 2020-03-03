@@ -11,23 +11,26 @@
 [ext_resource path="res://assets/sounds/cha-ching.ogg" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 347.4, 77.9998 )
+extents = Vector2( 490.299, 142.2 )
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
 Money = ExtResource( 2 )
 
 [node name="Wallet" type="Area2D" parent="."]
-position = Vector2( 520, 223 )
+position = Vector2( 649, 104.5 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Polygon2D" type="Polygon2D" parent="Wallet"]
-color = Color( 0.294118, 0.952941, 0.054902, 1 )
-polygon = PoolVector2Array( -370, -100, -370, 100, 370, 100, 370, -100 )
+position = Vector2( -69, 48.75 )
+scale = Vector2( 1.18649, 1.4875 )
+color = Color( 0.192157, 0.631373, 0.0352941, 1 )
+polygon = PoolVector2Array( -486.9, -100.135, -485.636, -10.3867, -486.9, 99.5292, 370, 100, 370, -100 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wallet"]
+position = Vector2( -139.5, 45 )
 shape = SubResource( 1 )
 
 [node name="Money" type="Node" parent="."]
