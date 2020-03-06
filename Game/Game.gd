@@ -47,12 +47,14 @@ func _unhandled_input(event):
 func _on_Wallet_area_entered(area):
 	if area.is_in_group("money"):
 		wallet_content += area.money_value
-		check_game()
+		hud.update_score(wallet_content)
+		#check_game()
 
 func _on_Wallet_area_exited(area):
 	if area.is_in_group("money"):
 		wallet_content -= area.money_value
-		check_game()
+		hud.update_score(wallet_content)
+		#check_game()
 
 func level_win() -> void:
 	#wait 1-2 seconds (?) - sound makes it evident
@@ -61,10 +63,6 @@ func level_win() -> void:
 	$CanvasLayer/AcceptDialog.visible = true
 
 func check_game() -> void:
-	hud.update_score(wallet_content)
-	print("Wallet content: " + str(wallet_content) + " euro")
-	print("Objective: " + str(objective) + " euro")
-	
 	var wallet = str(wallet_content) #I use strings to avoid error sin aproximation
 	var obj =  str(objective)
 	
@@ -72,7 +70,6 @@ func check_game() -> void:
 		level_win()
 	elif wallet_content > objective:
 		error_sound()
-	#drop sound is inside coin itself
 
 func error_sound():
 	randomize()
@@ -82,3 +79,6 @@ func error_sound():
 
 func _on_AcceptDialog_confirmed() -> void:
 	get_tree().change_scene("res://GUI/StartScreen.tscn")
+
+func _on_PayButton_pressed() -> void:
+	check_game()
